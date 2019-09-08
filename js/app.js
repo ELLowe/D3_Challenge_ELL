@@ -45,6 +45,11 @@ function makeResponsive() {
       surveyData.forEach(function(data) {
         data.poverty = +data.poverty;
         data.obesity = +data.obesity;
+        data.age = +data.age;
+        data.income = +data.income;
+        data.smokes = +data.smokes;
+        data.healthcare = +data.healthcare;
+        data.abbr = data.abbr;
       });
 
       // create scales
@@ -79,6 +84,17 @@ function makeResponsive() {
         .attr("fill", "#47576b")
         .attr("stroke-width", "1")
         .attr("stroke", "white");
+      
+      // append text
+      var circleLabels = chartGroup.selectAll("text")
+        .data(surveyData)
+        .enter()
+        .append("text")
+        .attr("x", d => xScale(d.poverty))
+        .attr("y", d => yScale(d.obesity))
+        .text(d => d.abbr)
+        .attr("font-size","9em")
+        .attr("fill","white");
 
       // Step 1: Initialize Tooltip
       var toolTip = d3.tip()
