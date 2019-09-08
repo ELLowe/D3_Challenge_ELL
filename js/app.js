@@ -28,7 +28,7 @@ function makeResponsive() {
   
     // Append SVG element
     var svg = d3
-      .select(".scatter")
+      .select("#scatter")
       .append("svg")
       .attr("height", svgHeight)
       .attr("width", svgWidth);
