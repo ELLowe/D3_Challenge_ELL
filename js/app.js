@@ -1,18 +1,18 @@
-// The code for the chart is wrapped inside a function that
-// automatically resizes the chart
+// Chart is wrapped inside a function for
+// automatically resizing the chart when the window size changes
 function makeResponsive() {
 
     // if the SVG area isn't empty when the browser loads,
     // remove it and replace it with a resized version of the chart
     var svgArea = d3.select("body").select("svg");
   
-    // clear svg is not empty
+    // clear svg if not empty
     if (!svgArea.empty()) {
       svgArea.remove();
     }
   
     // SVG wrapper dimensions are determined by the current width and
-    // height of the browser window.
+    // height of the browser window
     var svgWidth = (window.innerWidth)/2;
     var svgHeight = (window.innerHeight)/2;
   
@@ -38,10 +38,10 @@ function makeResponsive() {
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
   
     // Read CSV
-    d3.csv("../data/data.csv", function(error,surveyData) {
+    d3.csv("../data/data.csv").then(function(error, surveyData) {
       if (error) throw error;
   
-      //Format the data
+      // Format the data
       surveyData.forEach(function(data) {
         data.poverty = +data.poverty;
         data.obesity = +data.obesity;
@@ -52,7 +52,7 @@ function makeResponsive() {
         data.abbr = data.abbr;
       });
 
-      // create scales
+      // Create scales
       var xScale = d3.scaleLinear()
         .domain(d3.extent(surveyData, d => d.poverty))
         .range([0, width]);
@@ -61,11 +61,11 @@ function makeResponsive() {
         .domain([0, d3.max(surveyData, d => d.obesity)])
         .range([height, 0]);
 
-      // create axes
+      // Create axes
       var xAxis = d3.axisBottom(xScale);
       var yAxis = d3.axisLeft(yScale);
 
-      // append axes
+      // Append axes
       chartGroup.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(xAxis);
@@ -73,7 +73,7 @@ function makeResponsive() {
       chartGroup.append("g")
         .call(yAxis);
 
-      // append circles
+      // Append circles
       var circlesGroup = chartGroup.selectAll("circle")
         .data(surveyData)
         .enter()
@@ -85,7 +85,7 @@ function makeResponsive() {
         .attr("stroke-width", "1")
         .attr("stroke", "white");
       
-      // append text
+      // Append text
       var circleLabels = chartGroup.selectAll("text")
         .data(surveyData)
         .enter()
@@ -96,7 +96,7 @@ function makeResponsive() {
         .attr("font-size","9em")
         .attr("fill","white");
 
-      // Step 1: Initialize Tooltip
+      // Initialize Tooltip
       var toolTip = d3.tip()
         .attr("class", "tooltip")
         .offset([80, -60])
@@ -104,15 +104,15 @@ function makeResponsive() {
           return (`<strong>${d.state}<strong><hr>${d.poverty}<br>${d.obesity}`);
         });
 
-      // Step 2: Create the tooltip in chartGroup.
+      // Tooltip in chartGroup.
       chartGroup.call(toolTip);
 
-      // Step 3: Create "mouseover" event listener to display tooltip
+      // "Mouseover" event listener to display tooltip
       circlesGroup.on("mouseover", function(d) {
         d3.select(this).attr("stroke","black");
         toolTip.show(d, this);
       })
-      // Step 4: Create "mouseout" event listener to hide tooltip
+      // "Mouseout" event listener to hide tooltip
         .on("mouseout", function(d) {
           d3.select(this).attr("stroke","white");
           toolTip.hide(d);
