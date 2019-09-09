@@ -51,7 +51,7 @@ body {
   /* padding: 30px; */
 }
 .jumbotron h1{
-  font-size: 125px;
+  font-size: 100px;
   letter-spacing:-0.07em;
 }
 @media only screen and (max-width: 900px) {
@@ -65,6 +65,12 @@ body {
     font-size: 40px !important;
   }
 }
+.headerFont{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.article{
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
 .parallax {
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: white;
@@ -77,15 +83,21 @@ body {
 }
 .tooltip {
   position: absolute;
-  width: 90px;
-  height: 70px;
+  width: 90x;
+  height: 100px;
   padding: 10px;
-  font: 12px Georgia, 'Times New Roman', Times, serif;
+  font-size: 0.7em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   color: white;
   background: #2d6862;
   border: 0;
   border-radius: 10px;
+}
+.axisTitle{
+  color:#2d6862;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
 }
 #footer {
   position: absolute;
