@@ -43,7 +43,6 @@ function makeResponsive() {
     d3.csv("../data/data.csv").then(function(surveyData) {
         console.log(surveyData);
       
-  
       // Format the data
       surveyData.forEach(function(data) {
         data.poverty = +data.poverty;
@@ -52,13 +51,11 @@ function makeResponsive() {
         data.income = +data.income;
         data.smokes = +data.smokes;
         data.healthcare = +data.healthcare;
-        data.abbr = data.abbr;
+        // data.abbr = data.abbr;
       });
 
-      let yDataSelection = d.obesity;
-      let xDataSelection = d.poverty;
       let xInput = "Poverty:";
-      let yInput = "Obesity:";
+      let yInput = "Healthcare:";
 
       // Create scales
       var xScale = d3.scaleLinear()
@@ -67,7 +64,7 @@ function makeResponsive() {
         .range([0, width]);
 
       var yScale = d3.scaleLinear()
-        .domain(d3.extent(surveyData, d => d.obesity))
+        .domain(d3.extent(surveyData, d => d.healthcare))
         // .domain([0, d3.max(surveyData, d => d.obesity)])
         .range([height, 0]);
 
@@ -88,29 +85,29 @@ function makeResponsive() {
       let yTitle1 = chartGroup.append("text")
       .attr("class", "axisTitle")
       .attr("transform","rotate(-90)")
-      .attr("x", 0 - (height / 1.1))
-      .attr("y", 0 - (margin.left-34))
-      .attr("dy", "1em")
-      .text("Struggle With Obesity (%)")
-      .classed("text",true);
-
-      let yTitle2 = chartGroup.append("text")
-      .attr("class", "axisTitle")
-      .attr("transform","rotate(-90)")
       .attr("x", 0 - (height / 1.4))
-      .attr("y", 0 - (margin.left-16))
-      .attr("dy", "1em")
-      .text("Smoke (%)")
-      .classed("text",true);
-
-      let yTitle3 = chartGroup.append("text")
-      .attr("class", "axisTitle")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left)
-      .attr("x", 0 - (height / 1.2))
+      .attr("y", 0 - (margin.left-34))
       .attr("dy", "1em")
       .text("Lack Healthcare (%)")
       .classed("text",true);
+
+      // let yTitle2 = chartGroup.append("text")
+      // .attr("class", "axisTitle")
+      // .attr("transform","rotate(-90)")
+      // .attr("x", 0 - (height / 1.4))
+      // .attr("y", 0 - (margin.left-16))
+      // .attr("dy", "1em")
+      // .text("Smoke (%)")
+      // .classed("text",true);
+
+      // let yTitle3 = chartGroup.append("text")
+      // .attr("class", "axisTitle")
+      // .attr("transform", "rotate(-90)")
+      // .attr("y", 0 - margin.left)
+      // .attr("x", 0 - (height / 1.2))
+      // .attr("dy", "1em")
+      // .text("Lack Healthcare (%)")
+      // .classed("text",true);
 
       // Create x-axis Titles
       let xTitle1 = chartGroup.append("text")
@@ -120,104 +117,96 @@ function makeResponsive() {
       .text("Living In Poverty (%)")
       .classed("text",true);
 
-      let xTitle2 = chartGroup.append("text")
-      .attr("class", "axisTitle")
-      .attr("transform", `translate(${(width / 3)+20}, ${height + 50})`)
-      .attr("dy", "1em")
-      .text("Age (Median)")
-      .classed("text",true);
+      // let xTitle2 = chartGroup.append("text")
+      // .attr("class", "axisTitle")
+      // .attr("transform", `translate(${(width / 3)+20}, ${height + 50})`)
+      // .attr("dy", "1em")
+      // .text("Age (Median)")
+      // .classed("text",true);
 
-      let xTitle3 = chartGroup.append("text")
-      .attr("class", "axisTitle")
-      .attr("transform", `translate(${(width / 3)-30}, ${height + 70})`)
-      .attr("dy", "1em")
-      .text("Household Income (Median)")
-      .classed("text",true);
-
-      
+      // let xTitle3 = chartGroup.append("text")
+      // .attr("class", "axisTitle")
+      // .attr("transform", `translate(${(width / 3)-30}, ${height + 70})`)
+      // .attr("dy", "1em")
+      // .text("Household Income (Median)")
+      // .classed("text",true);
 
       // "Click" event listener to hightlight selected comparrisons for x-axis
       xTitle1.on('click',function(d){
         d3.select(this)
         // .attr("color","blue")
-        .attr("font-weight", "bold");
-        xTitle2.attr("font-weight","normal");
-        xTitle3.attr("font-weight","normal");
-        xDataSelection = d.poverty;
-        xInput = "Poverty: ";
+        // .attr("font-weight", "bold");
+        // xTitle2.attr("font-weight","normal");
+        // xTitle3.attr("font-weight","normal");
+        // xInput = "Poverty: ";
       })
 
-      xTitle2.on('click',function(d){
-        d3.select(this)
-        // .attr("color","blue")
-        .attr("font-weight", "bold");
-        xTitle1.attr("font-weight","normal");
-        xTitle3.attr("font-weight","normal");
-        xDataSelection = d.age;
-        xInput = "Age: ";
-      })
+      // xTitle2.on('click',function(d){
+      //   d3.select(this)
+      //   // .attr("color","blue")
+      //   .attr("font-weight", "bold");
+      //   xTitle1.attr("font-weight","normal");
+      //   xTitle3.attr("font-weight","normal");
+      //   xInput = "Age: ";
+      // })
 
-      xTitle3.on('click',function(d){
-        d3.select(this)
-        // .attr("color","blue")
-        .attr("font-weight", "bold");
-        xTitle2.attr("font-weight","normal");
-        xTitle1.attr("font-weight","normal");
-        xDataSelection = d.income;
-        xInput = "Income: ";
-      })
+      // xTitle3.on('click',function(d){
+      //   d3.select(this)
+      //   // .attr("color","blue")
+      //   .attr("font-weight", "bold");
+      //   xTitle2.attr("font-weight","normal");
+      //   xTitle1.attr("font-weight","normal");
+      //   xInput = "Income: ";
+      // })
 
       // "Click" event listener to hightlight selected comparrisons for y-axis
       yTitle1.on('click',function(d){
         d3.select(this)
         // .attr("color","blue")
-        .attr("font-weight", "bold");
-        yTitle2.attr("font-weight","normal");
-        yTitle3.attr("font-weight","normal");
-        yDataSelection = d.obesity;
-        yInput = "Obesity: ";
+        // .attr("font-weight", "bold");
+        // yTitle2.attr("font-weight","normal");
+        // yTitle3.attr("font-weight","normal");
+        // yInput = "Obesity: ";
       })
 
-      yTitle2.on('click',function(d){
-        d3.select(this)
-        // .attr("color","blue")
-        .attr("font-weight", "bold");
-        yTitle1.attr("font-weight","normal");
-        yTitle3.attr("font-weight","normal");
-        yDataSelection = d.smokes;
-        yInput = "Smoke: ";
-      })
+      // yTitle2.on('click',function(d){
+      //   d3.select(this)
+      //   // .attr("color","blue")
+      //   .attr("font-weight", "bold");
+      //   yTitle1.attr("font-weight","normal");
+      //   yTitle3.attr("font-weight","normal");
+      //   yInput = "Smoke: ";
+      // })
 
-      yTitle3.on('click',function(d){
-        d3.select(this)
-        // .attr("color","blue")
-        .attr("font-weight", "bold");
-        yTitle2.attr("font-weight","normal");
-        yTitle1.attr("font-weight","normal");
-        yDataSelection = d.healthcare;
-        yInput = "Healthcare: ";
-      })
+      // yTitle3.on('click',function(d){
+      //   d3.select(this)
+      //   // .attr("color","blue")
+      //   .attr("font-weight", "bold");
+      //   yTitle2.attr("font-weight","normal");
+      //   yTitle1.attr("font-weight","normal");
+      //   yInput = "Healthcare: ";
+      // })
 
       // Append circles
       var circlesGroup = chartGroup.selectAll("circle")
         .data(surveyData)
         .enter()
         .append("circle")
-        .attr("cx", d => xScale(xDataSelection))
-        .attr("cy", d => yScale(yDataSelection))
+        .attr("cx", d => xScale(d.poverty))
+        .attr("cy", d => yScale(d.healthcare))
         .attr("r", "10")
         .attr("fill", "#47576b")
         .attr("stroke-width", "1")
         .attr("stroke", "white")
         .classed("circle",true);
 
-      // Append text
-      var circleLabels = chartGroup.selectAll("text")
+      // Append text - for some reason this was only printing some of the states abbrs
+      var circleLabels = chartGroup.selectAll("circle text")
         .data(surveyData)
         .enter()
         .append("text")
-        .attr("x", d => (xScale(xDataSelection)-5))
-        .attr("y", d => (yScale(yDataSelection)+3))
+        .attr("x", d => (xScale(d.poverty)-5))
+        .attr("y", d => (yScale(d.healthcare)+3))
         .text(d => d.abbr)
         .attr("font-size","0.5em")
         .attr("fill","white")
@@ -226,9 +215,9 @@ function makeResponsive() {
       // Initialize Tooltip
       var toolTip = d3.tip()
         .attr("class", "tooltip")
-        .offset([80, -60])
+        .offset([80, -70])
         .html(function(d) {
-          return (`<strong>${d.state}<strong><hr> ${xInput} ${xDataSelection}<br> ${yInput} ${yDataSelection}`);
+          return (`<strong>${d.state} <strong><hr> ${xInput} ${d.poverty}<br> ${yInput} ${d.healthcare}`);
         });
 
       // Tooltip in chartGroup.
@@ -238,9 +227,10 @@ function makeResponsive() {
       circlesGroup.on("mouseover", function(d) {
         d3.select(this).attr("stroke","#47576b")
         .attr("fill","#66998c")
-        .attr("r",(10*2));
+        .attr("r",(10*2))
         toolTip.show(d, this);
       })
+
       // "Mouseout" event listener to hide tooltip
         .on("mouseout", function(d) {
           d3.select(this).attr("stroke","white")

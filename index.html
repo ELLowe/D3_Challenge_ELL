@@ -35,11 +35,12 @@
     </ul>
   </nav>
   <!-- NAVBAR END -->
+
   <!-- START First Parallax Section -->
 
     <div class="jumbotron text-center parallax parallax_section_1">
       <div class="container">
-        <h1 class="display-4 jtitle-resize">BEHAVIORAL CORRELATIONS DISCOVERED</h1>
+        <h1 class="display-4 jtitle-resize">BEHAVIORAL CORRELATION DISCOVERED</h1>
       </div>
     </div>
   <!-- END First Parallax Section -->
@@ -61,27 +62,37 @@
     <!-- END Chart Section -->
 
     <!-- START Article of Analysis -->
-    <div class="row">
-      <div class="col-xs-12  col-md-12">
-        <div class="article">
-          <h2 class="mt-5">Correlations Discovered Between Health Risks and Age, Income</h2>
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-            quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    <div class="article mt-4 mx-auto">        
+      <div class="row justify-content-md-center mx-auto">
+      <div class="col-md-5 p-3 mx-auto">
+        <h2>Statistically Significant Correlation Discovered in U.S. Population: Living in Poverty and Lacking Healthcare</h2>
 
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-            quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+        <p>
+          As the data appears, there seems to be a moderate positive correlation between the percent of residents living in poverty and the overall lack of access to healthcare per US state.
+          Calculating a Pearson correlation coefficient produces a result of 0.52. Considering the survey is of demographic data, a value above 0.45 can be
+            considered moderate. To affirm the correlation, performing a t-test produces a p-value of 0.00189. For a t-test, statistical significance can be attributed when the p-value is below 0.05.
+          As such, the relationship between  U.S. population living in poverty and access to healthcare seem significant.
+        </p>
 
-          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-            quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-            ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-        </div>
+        <p>Other correlated relationships found to be significant were:</p>
+        <p>Smoking and Obesity levels (Pearson Coeff: 0.74, p-value: 5.209e-29)</p>
+        <p>Smoking and Poverty levels (Pearson Coeff: 0.52, p-value: 2.378e-7)</p>
+        <p>Poverty and Obesity levels (Pearson Coeff: 0.46, p-value: 1.498e-40)</p>
+        <p>Poverty and Income levels (Pearson Coeff: -0.77, p-value: 1.829e-65).</p>
       </div>
+
+      <!-- SPACER -->
+      <!-- <div class="w-100"></div> -->
+
+      <div class="col-md-5 mx-auto image-center">
+        <h1 class="text-center">Pearson Correlation Coefficient Heatmap</h1>
+        <a><img class="text-center img-fluid" src="images/BRFSS_2014_pearson_results.png"></a>
+      </div>
+
     </div>
     <!-- END Article of Analysis -->
+    </div>
   </div>
-
   <!-- Footer-->
   <div id="footer">
     <p>ELL Reporting Services</p>
